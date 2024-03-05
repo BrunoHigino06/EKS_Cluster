@@ -56,3 +56,24 @@
       description = "role used by the eks cluster"
     } 
   ]
+
+# IAM role policy attachments
+  iam_role_policy_attachment =[
+    {
+      role        = "eks_cluster_role"
+      policy_arn  = "arn:aws:iam::aws:policy/AdministratorAccess"
+    }
+  ]
+
+# EKS Cluster inputs
+  eks_cluster = [ 
+    {
+      name                    = "EKS_Cluster"
+      role_name               = "eks_cluster_role"
+      subnet_name             = ["EKS_1", "EKS_2"]
+      endpoint_private_access = "true"
+      endpoint_public_access  = "true"
+      security_group_name     = ["EKS_SG"]
+      authentication_mode     = "API_AND_CONFIG_MAP"
+    } 
+  ]

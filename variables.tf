@@ -54,3 +54,26 @@
     description             = optional(string)
   }))
 }
+
+# IAM role attachment vars
+  variable "iam_role_policy_attachment" {
+  type          = list(object({
+    role        = string
+    policy_arn  = string
+  }))
+}
+
+# EKS Cluster vars
+variable "eks_cluster" {
+    type                                              = list(object({
+          name                                        = string
+          role_name                                   = string
+          subnet_name                                 = list(string)
+          endpoint_private_access                     = optional(string)
+          endpoint_public_access                      = optional(string)
+          security_group_name                         = optional(list(string))
+          authentication_mode                         = optional(string)
+        }
+      )
+    )
+}
