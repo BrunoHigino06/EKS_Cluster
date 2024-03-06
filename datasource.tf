@@ -42,7 +42,6 @@ locals {
   ]
 }
 
-
 # Data IAM role
   data "aws_iam_role" "iam_role" {
     for_each  = {for role in local.iam_role_names : role => role}

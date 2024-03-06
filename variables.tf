@@ -53,6 +53,7 @@
     name                    = string
     description             = optional(string)
   }))
+  default = null
 }
 
 # IAM role attachment vars
