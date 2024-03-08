@@ -85,3 +85,15 @@
       authentication_mode     = "API_AND_CONFIG_MAP"
     } 
   ]
+
+# EKS Node Group
+  eks_node_group = [
+    {
+      cluster_name = "EKS_Cluster"
+      node_group_name = "EKS_Node_Group"
+      instance_types = "t2.medium"
+      desired_size = "1"
+      max_size = "2"
+      min_size = "1"
+    }
+  ]
