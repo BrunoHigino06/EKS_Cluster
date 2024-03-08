@@ -45,6 +45,7 @@
         description          = optional(string)
       }))
     }))
+    description = "security groups"
   }
 
 # IAM role vars
@@ -53,7 +54,7 @@
     name                    = string
     description             = optional(string)
   }))
-  default = null
+  description = "IAM role for the cluster"
 }
 
 # IAM role attachment vars
@@ -77,4 +78,5 @@ variable "eks_cluster" {
         }
       )
     )
+    description = "eks cluster variables"
 }
