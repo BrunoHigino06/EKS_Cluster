@@ -1,7 +1,8 @@
 locals {
     subnet_unique_names   = flatten([for eks in var.eks_cluster : eks.subnet_name])
-    iam_role_names        = flatten([for eks in var.eks_cluster : eks.role_name])
-    security_group_names  = flatten([for eks in var.eks_cluster : eks.security_group_name]) 
+    cluster_role_names    = flatten([for eks in var.eks_cluster : eks.role_name])
+    node_role_name        = flatten([for node_group in var.eks_node_group : node_group.node_role_name])
+    security_group_names  = flatten([for eks in var.eks_cluster : eks.security_group_name])
   }
 
 # Data aws vpc
@@ -42,9 +43,9 @@ locals {
   ]
 }
 
-# Data IAM role
+# Data IAM role for the eks cluster
   data "aws_iam_role" "iam_role" {
-    for_each  = {for role in local.iam_role_names : role => role}
+    for_each  = {for role in local.cluster_role_names : role => role}
     name      = each.key
 
     depends_on = [ 
@@ -63,5 +64,15 @@ locals {
 
     depends_on = [ 
       module.security_group
+    ]
+  }
+
+# Data IAM role for the eks node group
+  data "aws_iam_role" "node_group_iam_role" {
+    for_each  = {for role in local.node_role_name : role => role}
+    name      = each.key
+
+    depends_on = [ 
+      module.iam_role
     ]
   }

@@ -54,7 +54,11 @@
     {
       name        = "eks_cluster_role"
       description = "role used by the eks cluster"
-    } 
+    },
+    {
+      name        = "eks_node_role"
+      description = "role used by the eks node"
+    }
   ]
 
 # IAM role policy attachments
@@ -62,7 +66,11 @@
     {
       role        = "eks_cluster_role"
       policy_arn  = "arn:aws:iam::aws:policy/AdministratorAccess"
-    }
+    },
+    {
+      role        = "eks_node_role"
+      policy_arn  = "arn:aws:iam::aws:policy/AdministratorAccess"
+    },
   ]
 
 # EKS Cluster inputs

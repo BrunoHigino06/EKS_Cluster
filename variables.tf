@@ -80,3 +80,17 @@ variable "eks_cluster" {
     )
     description = "eks cluster variables"
 }
+
+# EKS node group vars
+variable "eks_node_group" {
+  type = list(object({
+    cluster_name                = string
+    node_group_name             = string
+    node_role_name              = string
+    subnet_ids                  = list(string)
+    instance_types              = string
+    desired_size                = string
+    max_size                    = string
+    min_size                    = string
+  }))
+}
