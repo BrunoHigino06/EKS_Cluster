@@ -24,7 +24,7 @@ locals {
 
       principals {
         type        = "Service"
-        identifiers = ["eks.amazonaws.com"]
+        identifiers = ["eks.amazonaws.com", "ec2.amazonaws.com"]
       }
     }
   }
@@ -69,7 +69,7 @@ locals {
 
 # Data IAM role for the eks node group
   data "aws_iam_role" "node_group_iam_role" {
-    for_each  = {for role in local.node_role_name : role => role}
+    for_each  = { for role in local.node_role_name : role => role if role != null && role != "" }
     name      = each.key
 
     depends_on = [ 

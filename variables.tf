@@ -87,10 +87,10 @@ variable "eks_node_group" {
     cluster_name                = string
     node_group_name             = string
     node_role_name              = string
-    subnet_ids                  = list(string)
-    instance_types              = string
+    instance_types              = list(string)
     desired_size                = string
     max_size                    = string
     min_size                    = string
+    max_unavailable_percentage  = string
   }))
 }

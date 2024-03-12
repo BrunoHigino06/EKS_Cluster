@@ -62,7 +62,7 @@
   ]
 
 # IAM role policy attachments
-  iam_role_policy_attachment =[
+  iam_role_policy_attachment = [
     {
       role        = "eks_cluster_role"
       policy_arn  = "arn:aws:iam::aws:policy/AdministratorAccess"
@@ -89,11 +89,13 @@
 # EKS Node Group
   eks_node_group = [
     {
-      cluster_name = "EKS_Cluster"
-      node_group_name = "EKS_Node_Group"
-      instance_types = "t2.medium"
-      desired_size = "1"
-      max_size = "2"
-      min_size = "1"
+      cluster_name                = "EKS_Cluster"
+      node_group_name             = "eks_node"
+      instance_types              = ["t2.medium"]
+      node_role_name              = "eks_node_role"
+      desired_size                = "1"
+      max_size                    = "2"
+      min_size                    = "1"
+      max_unavailable_percentage  = "20"
     }
   ]
